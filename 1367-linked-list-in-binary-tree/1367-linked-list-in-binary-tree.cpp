@@ -21,7 +21,6 @@
  */
 class Solution {
 public:
-
     bool same(ListNode* head, TreeNode* root)
     {
         if(head==NULL)
