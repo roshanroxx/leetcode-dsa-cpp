@@ -29,7 +29,7 @@ public:
         }  
     }
     vector<vector<int>> permute(vector<int>& nums) {
-        unordered_set<int> s;
+        // unordered_set<int> s;
         vector<vector<int>> v;
         vector<int> k;
         pp(v,k,nums,0,nums.size());
