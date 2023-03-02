@@ -62,7 +62,7 @@ public:
                         mini2 = mini;
                         mini = j;
                     }
-                    else if(mini2!=-1 && dp[i][j]<=dp[i][mini2]){
+                    else if(dp[i][j]<=dp[i][mini2]){
                         mini2 = j;
                     }
                     else if(mini2 == -1) mini2 = j;
