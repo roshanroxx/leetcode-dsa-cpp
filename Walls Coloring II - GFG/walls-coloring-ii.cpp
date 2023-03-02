@@ -30,7 +30,8 @@ public:
                 mini = i;
                 // cout<<"sg";
             }
-            else if(mini2!=-1 && dp[0][i]<=dp[0][mini2]){
+            else if(dp[0][i]<=dp[0][mini2]){
+                // mini2!=-1 && 
                 mini2 = i;
             }
             else if(mini2==-1) mini2 = i;
