@@ -26,9 +26,7 @@ private:
         v[i] = 0;
         return false;
     }
-public:
-    // Function to detect cycle in a directed graph 
-    bool isCyclic(int V, vector<int> adj[]) {
+    bool cyclebydfs(int V, vector<int> adj[]){
         vector<int> v(V,-1);
         for(int i=0;i<V;i++){
             if(v[i]==-1){
@@ -38,7 +36,44 @@ public:
             }
         }
         return false;
+        
     }
+public:
+    // Function to detect cycle in a directed graph 
+    bool isCyclic(int V, vector<int> adj[]) {
+        vector<int> indeg(V,0);
+	    for(int i=0;i<V;i++){
+	        for(auto x :adj[i]){
+	            indeg[x]++;
+	        }
+	    }
+	    queue<int> q;
+	    for(int i=0;i<V;i++){
+	        if(indeg[i]==0){
+	            q.push(i);
+	        }
+	    }
+	    vector<int> ans;
+	    while(!q.empty()){
+	        int k = q.front();
+	        q.pop();
+	        ans.push_back(k);
+	       // cout<<k<<endl;
+	        for(auto x:adj[k]){
+	            indeg[x]--;
+	            if(indeg[x]==0){
+	                q.push(x);
+	            }
+	        }
+	        
+	    }
+	    return !(ans.size()==V);
+    }
+    
+    
+    
+    
+    
 };
 
 //{ Driver Code Starts.
