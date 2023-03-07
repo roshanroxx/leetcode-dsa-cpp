@@ -16,21 +16,49 @@ class Solution
             s.push(i);
             return;
         }
+        vector<int> solvebydfs(int V, vector<int> adj[]){
+    	    vector<bool> v(V,0);
+    	    stack<int> s;
+    	    for(int i=0;i<V;i++){
+    	        if(v[i]==0){
+    	            dfs(i,adj,v,s);
+    	        }
+    	    }
+    	    vector<int> ans;
+    	    while(!s.empty()){
+    	        ans.push_back(s.top());
+    	        s.pop();
+    	    }
+    	    return ans;
+        }
 	public:
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	    vector<bool> v(V,0);
-	    stack<int> s;
+	    vector<int> indeg(V);
 	    for(int i=0;i<V;i++){
-	        if(v[i]==0){
-	            dfs(i,adj,v,s);
+	        for(auto x :adj[i]){
+	            indeg[x]++;
+	        }
+	    }
+	    queue<int> q;
+	    for(int i=0;i<V;i++){
+	        if(indeg[i]==0){
+	            q.push(i);
 	        }
 	    }
 	    vector<int> ans;
-	    while(!s.empty()){
-	        ans.push_back(s.top());
-	        s.pop();
+	    while(!q.empty()){
+	        int k = q.front();
+	        q.pop();
+	        ans.push_back(k);
+	        for(auto x:adj[k]){
+	            indeg[x]--;
+	            if(indeg[x]==0){
+	                q.push(x);
+	            }
+	        }
+	        
 	    }
 	    return ans;
 	}
