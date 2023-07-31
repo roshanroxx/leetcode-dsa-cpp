@@ -7,22 +7,16 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-    long long mod = 1e9+7;
-    long long int pp(long long int n , vector<long long int> &dp){
-        if(n<=1){
-            return dp[n];
+    int m = 1e9+7;
+    int nthFibonacci(int n){
+        if(n==0 || n==1) return n;
+        // int k = nthFibonacci(int n)
+        vector<int > v(n+1,-1);
+        v[0] =0;v[1] = 1;
+        for(int i=2;i<=n;i++){
+            v[i] = (v[i-1]+v[i-2])%m;
         }
-        if(dp[n]!=-1){
-            return dp[n];
-        }
-        return dp[n]=(pp(n-2,dp) + pp(n-1,dp))%mod;
-    }
-    long long int nthFibonacci(long long int n){
-        vector<long long int>  dp(n+1,-1);
-        dp[0]=0;
-        dp[1]=1;
-        dp[n]=pp(n,dp)%mod;
-        return dp[n];
+        return v[n];
     }
 };
 
@@ -31,7 +25,7 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        long long int n;
+        int n;
         cin >> n;
         Solution ob;
         cout << ob.nthFibonacci(n) << endl;
